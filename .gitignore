@@ -1,0 +1,35 @@
+.DS_Store
+Thumbs.db
+
+# Python
+*.pyc
+__pycache__/
+*.pyo
+venv/
+env/
+.venv/
+
+# Django
+db.sqlite3
+db.sqlite3-journal
+staticfiles/
+media/
+
+# Build output
+_site/
+
+# Claude Code
+.claude/
+
+# Backup
+*.bak
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Large non-web image formats
+*.heic
+*.HEIC

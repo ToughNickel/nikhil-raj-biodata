@@ -1,0 +1,53 @@
+<section class="section" id="heritage">
+  <div class="reveal">
+    <div class="section-label">Heritage</div>
+    <h2 class="section-title">पुत्रक परिचय</h2>
+    <p class="section-sub">Lineage and cultural identity — the roots that ground the journey.</p>
+  </div>
+
+  <div class="heritage-wrapper reveal">
+    <div class="bg-mandala"></div>
+
+    <div class="heritage-header hindi">{{ personal.sanskrit_greeting }}</div>
+    <div class="heritage-subheader">Genealogical Lineage</div>
+
+    <!-- Lineage Tree -->
+    <div class="lineage-tree">
+      {% for node in lineage_nodes %}
+        {% if not forloop.first %}
+          <div class="tree-connector"></div>
+        {% endif %}
+        <div class="tree-node{% if node.is_self %} current{% endif %}">
+          <div class="node-name">{% if node.is_self %}{{ node.name_english }}{% else %}{{ node.name_hindi }}{% endif %}</div>
+          <div class="node-role">{{ node.role_label }}</div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- Gotra -->
+    {% if heritage %}
+      <div style="text-align:center;margin-bottom:2.5rem;">
+        <div style="font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--accent-amber);margin-bottom:0.3rem;">Gotra</div>
+        <div class="hindi" style="font-size:1.8rem;color:var(--accent-amber-light);font-weight:600;">{{ heritage.gotra_hindi }}</div>
+        <div style="font-size:0.9rem;color:var(--text-muted);">{{ heritage.gotra_english }}</div>
+      </div>
+    {% endif %}
+
+    <!-- Mool Cards -->
+    <div class="mool-grid">
+      {% for card in mool_cards %}
+        <div class="mool-card reveal{% if not forloop.first %} reveal-delay-{{ forloop.counter0 }}{% endif %}">
+          <div class="mool-label">{{ card.label_hindi }}</div>
+          <div class="mool-text">{{ card.text_hindi }}</div>
+        </div>
+      {% endfor %}
+    </div>
+
+    {% if heritage %}
+      <div style="text-align:center;margin-top:2rem;">
+        <div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:0.3rem;">{{ heritage.closing_note }}</div>
+        <div class="hindi" style="font-size:1.1rem;color:var(--accent-amber);opacity:0.7;">{{ personal.footer_sanskrit }}</div>
+      </div>
+    {% endif %}
+  </div>
+</section>

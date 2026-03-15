@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  {% include 'biodata/partials/_hero.html' %}
+  {% include 'biodata/partials/_about_bento.html' %}
+  {% include 'biodata/partials/_career_timeline.html' %}
+  {% include 'biodata/partials/_family_cards.html' %}
+  {% include 'biodata/partials/_heritage.html' %}
+  {% include 'biodata/partials/_gallery.html' %}
+{% endblock %}
+
+{% block extra_data %}
+  {{ greetings_json|json_script:"greetings-data" }}
+{% endblock %}

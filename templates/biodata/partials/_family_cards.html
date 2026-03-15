@@ -1,0 +1,31 @@
+{% load biodata_tags %}
+<section class="section" id="family">
+  <div class="reveal">
+    <div class="section-label">Family</div>
+    <h2 class="section-title">The Family</h2>
+    <p class="section-sub">A close-knit family of service and technology professionals, rooted in values.</p>
+  </div>
+
+  <div class="family-grid">
+    {% for member in family_members %}
+      <div class="family-card reveal {% if not forloop.first %}reveal-delay-{{ forloop.counter0|stringformat:'d' }}{% endif %}">
+        <div class="fc-relation">{{ member.relation }}</div>
+        <div class="fc-name">{{ member.name }}</div>
+        <div class="fc-detail">{{ member.description }}</div>
+        {% if member.tags.all %}
+          <div class="fc-tags">
+            {% for tag in member.tags.all %}
+              <span class="fc-tag{% if tag.is_amber %} amber{% endif %}">{{ tag.label }}</span>
+            {% endfor %}
+          </div>
+        {% endif %}
+        {% if member.contact %}
+          <div class="fc-detail" style="margin-top:0.5rem;font-size:0.8rem;color:var(--text-muted);">Contact: {{ member.contact }}</div>
+        {% endif %}
+        {% if member.extra_info %}
+          <div class="fc-detail" style="margin-top:0.5rem;font-size:0.8rem;color:var(--text-muted);">{{ member.extra_info }}</div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</section>

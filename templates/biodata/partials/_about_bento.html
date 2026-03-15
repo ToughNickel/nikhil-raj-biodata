@@ -1,0 +1,89 @@
+{% load static %}
+<section class="section" id="about">
+  <div class="reveal">
+    <div class="section-label">At a glance</div>
+    <h2 class="section-title">The Essentials</h2>
+    <p class="section-sub">A snapshot of who I am — the quick facts and key details.</p>
+  </div>
+
+  <div class="bento">
+    <!-- Photo card 1 -->
+    <div class="bento-card bento-photo row-2 reveal">
+      {% if personal.hero_photo %}
+        <img src="{{ personal.hero_photo.url }}" alt="{{ personal.full_name }}" style="object-position: center 15%;" />
+      {% else %}
+        <img src="{% static 'images/IMG_2309.JPG' %}" alt="{{ personal.full_name }}" style="object-position: center 15%;" />
+      {% endif %}
+    </div>
+
+    <!-- Height -->
+    <div class="bento-card reveal reveal-delay-1">
+      <span class="card-icon">📏</span>
+      <div class="card-value">{{ personal.height }}</div>
+      <div class="card-label">Height</div>
+    </div>
+
+    <!-- DOB -->
+    <div class="bento-card reveal reveal-delay-2">
+      <span class="card-icon">🎂</span>
+      <div class="card-value" style="font-size:1.4rem;">{{ personal.date_of_birth|date:"d M Y" }}</div>
+      <div class="card-label">Date of Birth</div>
+    </div>
+
+    <!-- Education -->
+    <div class="bento-card col-2 reveal reveal-delay-3">
+      <span class="card-icon">🎓</span>
+      {% for edu in education_list %}
+        {% if forloop.first %}
+          <div class="card-value" style="font-size:1.2rem;">{{ edu.degree }}</div>
+          <div class="card-label">Education</div>
+          <div class="card-sub">{{ edu.institution }} — Class of {{ edu.year_range }}</div>
+        {% else %}
+          <div class="card-sub" style="margin-top:0.3rem;">{{ edu.degree }} — {{ edu.institution }} — {{ edu.year_range }}</div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <!-- Complexion -->
+    <div class="bento-card reveal reveal-delay-1">
+      <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#f5deb3,#ffe4c4);margin-bottom:0.75rem;border:2px solid rgba(255,255,255,0.15);"></div>
+      <div class="card-value" style="font-size:1.2rem;">{{ personal.complexion }}</div>
+      <div class="card-label">Complexion</div>
+    </div>
+
+    <!-- Location -->
+    <div class="bento-card reveal reveal-delay-2">
+      <span class="card-icon">📍</span>
+      <div class="card-value" style="font-size:1rem;">{{ personal.location_primary|cut:", India" }}</div>
+      <div class="card-label">Current Residence</div>
+      <div class="card-sub">{{ personal.current_address }}</div>
+    </div>
+
+    <!-- Properties -->
+    <div class="bento-card col-2 reveal reveal-delay-3">
+      <span class="card-icon">🏠</span>
+      <div class="card-value" style="font-size:1.1rem;">Properties</div>
+      <div class="property-grid">
+        {% for prop in properties %}
+          <div class="property-tag">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+            {{ prop.name }}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Native -->
+    <div class="bento-card col-2 reveal reveal-delay-4">
+      <span class="card-icon">🌾</span>
+      <div class="card-value" style="font-size:1rem;">{{ personal.native_village }}</div>
+      <div class="card-label">Native Village</div>
+      <div class="card-sub">{{ personal.native_district }}</div>
+    </div>
+
+    <!-- Photo card 2 -->
+    <div class="bento-card bento-photo col-2 reveal reveal-delay-2">
+      <img src="{% static 'images/20240402_181559.jpg' %}" alt="{{ personal.full_name }}" style="object-position: center 30%;" />
+    </div>
+  </div>
+</section>
